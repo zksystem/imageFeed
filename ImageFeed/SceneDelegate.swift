@@ -3,7 +3,7 @@
 //  ImageFeed
 //
 //  Created by Konstantin Zuykov on 21.12.2022.
-//
+//   
 
 import UIKit
 
