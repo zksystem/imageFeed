@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -101,23 +100,78 @@
                     <view key="view" contentMode="scaleToFill" id="wuh-8a-SlR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userpic" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-pv-9UQ">
+                                <rect key="frame" x="16" y="91" width="70" height="70"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6w-sm-bvX">
+                                <rect key="frame" x="345" y="114" width="24" height="24"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="logout_button"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Екатерина Новикова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcM-Ib-9QM">
+                                <rect key="frame" x="16.000000000000014" y="169" width="227.33333333333337" height="27.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                <color key="textColor" name="ypWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ekaterina_nov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fW2-T0-PLn">
+                                <rect key="frame" x="16" y="204.66666666666666" width="97" height="15.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="ypGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, world!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQ4-pA-XNt">
+                                <rect key="frame" x="16" y="228.33333333333334" width="75.666666666666671" height="15.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="ypWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Cym-cY-f6J"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="ypBlack"/>
+                        <constraints>
+                            <constraint firstItem="ZcM-Ib-9QM" firstAttribute="top" secondItem="6vs-pv-9UQ" secondAttribute="bottom" constant="8" id="3e5-Rp-Y2f"/>
+                            <constraint firstItem="ZcM-Ib-9QM" firstAttribute="leading" secondItem="Cym-cY-f6J" secondAttribute="leading" constant="16" id="4Z5-Bd-C8W"/>
+                            <constraint firstItem="Cym-cY-f6J" firstAttribute="trailing" secondItem="n6w-sm-bvX" secondAttribute="trailing" constant="24" id="5D8-UJ-6Ji"/>
+                            <constraint firstItem="n6w-sm-bvX" firstAttribute="top" secondItem="Cym-cY-f6J" secondAttribute="top" constant="55" id="5xI-G8-tv6"/>
+                            <constraint firstItem="ZcM-Ib-9QM" firstAttribute="top" secondItem="6vs-pv-9UQ" secondAttribute="bottom" constant="8" id="6kz-cA-Mad"/>
+                            <constraint firstItem="6vs-pv-9UQ" firstAttribute="leading" secondItem="Cym-cY-f6J" secondAttribute="leading" constant="16" id="AX4-ny-wS6"/>
+                            <constraint firstItem="Cym-cY-f6J" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gQ4-pA-XNt" secondAttribute="trailing" symbolic="YES" id="Gkq-RW-bYJ"/>
+                            <constraint firstItem="Cym-cY-f6J" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZcM-Ib-9QM" secondAttribute="trailing" symbolic="YES" id="HKo-uz-rfn"/>
+                            <constraint firstItem="gQ4-pA-XNt" firstAttribute="leading" secondItem="Cym-cY-f6J" secondAttribute="leading" constant="16" id="KgV-7G-Coj"/>
+                            <constraint firstItem="n6w-sm-bvX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6vs-pv-9UQ" secondAttribute="trailing" id="Knz-hm-Q0c"/>
+                            <constraint firstItem="gQ4-pA-XNt" firstAttribute="top" secondItem="fW2-T0-PLn" secondAttribute="bottom" constant="8" id="YZs-rl-zcZ"/>
+                            <constraint firstItem="fW2-T0-PLn" firstAttribute="top" secondItem="ZcM-Ib-9QM" secondAttribute="bottom" constant="8" id="bmB-xZ-sOk"/>
+                            <constraint firstItem="fW2-T0-PLn" firstAttribute="leading" secondItem="Cym-cY-f6J" secondAttribute="leading" constant="16" id="ccE-sJ-LCp"/>
+                            <constraint firstItem="6vs-pv-9UQ" firstAttribute="top" secondItem="Cym-cY-f6J" secondAttribute="top" constant="32" id="hwY-o6-ETa"/>
+                            <constraint firstItem="Cym-cY-f6J" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fW2-T0-PLn" secondAttribute="trailing" symbolic="YES" id="sdo-Ie-L0t"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="border-radius">
+                                <integer key="value" value="61"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ur-GQ-SII" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-477" y="-347"/>
+            <point key="canvasLocation" x="-477.09923664122135" y="-347.18309859154931"/>
         </scene>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="like_button_on" width="42" height="42"/>
+        <image name="logout_button" width="24" height="24"/>
+        <image name="userpic" width="70" height="70"/>
         <namedColor name="ypBlack">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="ypGray">
+            <color red="0.68235294117647061" green="0.68627450980392157" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ypWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
