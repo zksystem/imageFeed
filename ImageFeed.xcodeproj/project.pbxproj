@@ -44,8 +44,6 @@
 		653E3C6929538FFF007EC9CA = {
 			isa = PBXGroup;
 			children = (
-				65A2B021297D2AFF001042A9 /* Profile */,
-				65A2B020297420D5001042A9 /* ImagesList */,
 				653E3C7429538FFF007EC9CA /* ImageFeed */,
 				653E3C7329538FFF007EC9CA /* Products */,
 			);
@@ -62,6 +60,8 @@
 		653E3C7429538FFF007EC9CA /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				65A2B020297420D5001042A9 /* ImagesList */,
+				65A2B021297D2AFF001042A9 /* Profile */,
 				653E3C7529538FFF007EC9CA /* AppDelegate.swift */,
 				653E3C7729538FFF007EC9CA /* SceneDelegate.swift */,
 				653E3C7B29538FFF007EC9CA /* Main.storyboard */,

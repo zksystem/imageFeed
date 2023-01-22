@@ -103,6 +103,16 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userpic" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-pv-9UQ">
                                 <rect key="frame" x="16" y="91" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="Cor-1K-F3k"/>
+                                    <constraint firstAttribute="height" constant="70" id="yHG-9Y-Opq"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6w-sm-bvX">
                                 <rect key="frame" x="345" y="114" width="24" height="24"/>
@@ -147,11 +157,6 @@
                             <constraint firstItem="6vs-pv-9UQ" firstAttribute="top" secondItem="Cym-cY-f6J" secondAttribute="top" constant="32" id="hwY-o6-ETa"/>
                             <constraint firstItem="Cym-cY-f6J" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fW2-T0-PLn" secondAttribute="trailing" symbolic="YES" id="sdo-Ie-L0t"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="border-radius">
-                                <integer key="value" value="61"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ur-GQ-SII" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
