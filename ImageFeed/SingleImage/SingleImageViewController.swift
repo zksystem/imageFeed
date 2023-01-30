@@ -13,6 +13,15 @@ final class SingleImageViewController : UIViewController {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBAction func didShareButtonTap(_ sender: Any) {
+        let image = imageView.image
+        let imageToShare = [ image! ]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func didTapBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
