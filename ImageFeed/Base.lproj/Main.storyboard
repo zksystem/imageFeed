@@ -44,7 +44,7 @@
                                     <action selector="didShareButtonTap:" destination="KfY-Lg-Awa" eventType="touchUpInside" id="Zq8-Ph-uGW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7n-eB-mY2">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7n-eB-mY2" userLabel="Back Button">
                                 <rect key="frame" x="8" y="67" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="STY-4g-feB"/>
