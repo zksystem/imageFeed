@@ -37,7 +37,7 @@
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCk-Mg-Xfa" userLabel="Share Button">
-                                <rect key="frame" x="171" y="717" width="51" height="50"/>
+                                <rect key="frame" x="171" y="751" width="51" height="50"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="share_button"/>
                                 <connections>
@@ -60,7 +60,7 @@
                         <viewLayoutGuide key="safeArea" id="fOk-9J-aih"/>
                         <color key="backgroundColor" name="ypBlack"/>
                         <constraints>
-                            <constraint firstItem="fOk-9J-aih" firstAttribute="bottom" secondItem="XCk-Mg-Xfa" secondAttribute="bottom" constant="51" id="Ada-xj-6G3"/>
+                            <constraint firstItem="fOk-9J-aih" firstAttribute="bottom" secondItem="XCk-Mg-Xfa" secondAttribute="bottom" constant="17" id="Ada-xj-6G3"/>
                             <constraint firstItem="W7n-eB-mY2" firstAttribute="top" secondItem="fOk-9J-aih" secondAttribute="top" constant="8" id="CgM-7C-8Rb"/>
                             <constraint firstItem="eJI-qo-ghO" firstAttribute="top" secondItem="T4g-tV-70V" secondAttribute="top" id="EPJ-Od-DuL"/>
                             <constraint firstItem="W7n-eB-mY2" firstAttribute="leading" secondItem="fOk-9J-aih" secondAttribute="leading" constant="8" id="M6i-hv-OSh"/>

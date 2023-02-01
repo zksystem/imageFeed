@@ -27,43 +27,33 @@ final class ProfileViewController: UIViewController {
         imageViewUserPic.tintColor = .gray
         imageViewUserPic.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageViewUserPic)
-        imageViewUserPic.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        imageViewUserPic.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        imageViewUserPic.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        imageViewUserPic.heightAnchor.constraint(equalToConstant: 70).isActive = true
         self.imageViewUserPic = imageViewUserPic
         
         // Add full name
         let labelFullName = UILabel()
         labelFullName.text = "Екатерина Новикова"
-        labelFullName.font = UIFont.boldSystemFont(ofSize: 23.0)
+        labelFullName.font = UIFont.systemFont(ofSize: 23.0)
         labelFullName.textColor = UIColor(named: "ypWhite")
         labelFullName.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelFullName)
-        labelFullName.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor).isActive = true
-        labelFullName.topAnchor.constraint(equalTo: imageViewUserPic.bottomAnchor, constant: 8).isActive = true
         self.labelFullName = labelFullName
         
         // Add username
         let labelUserName = UILabel()
         labelUserName.text = "@ekaterina_nov"
         labelUserName.font = UIFont.systemFont(ofSize: 13.0)
-        labelUserName.textColor = UIColor(named: "ypWhite")
+        labelUserName.textColor = UIColor(named: "ypGray")
         labelUserName.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelUserName)
-        labelUserName.leadingAnchor.constraint(equalTo: labelFullName.leadingAnchor).isActive = true
-        labelUserName.topAnchor.constraint(equalTo: labelFullName.bottomAnchor, constant: 8).isActive = true
         self.labelUserName = labelUserName
         
         // Add greetings message
         let labelGreetings = UILabel()
         labelGreetings.text = "Hello, world"
-        labelGreetings.font = UIFont.systemFont(ofSize: 18.0)
+        labelGreetings.font = UIFont.systemFont(ofSize: 13.0)
         labelGreetings.textColor = UIColor(named: "ypWhite")
         labelGreetings.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelGreetings)
-        labelGreetings.leadingAnchor.constraint(equalTo: labelUserName.leadingAnchor).isActive = true
-        labelGreetings.topAnchor.constraint(equalTo: labelUserName.bottomAnchor, constant: 8).isActive = true
         self.labelGreetings = labelGreetings
         
         // Add logout button
@@ -76,8 +66,30 @@ final class ProfileViewController: UIViewController {
         button.tintColor = UIColor(named: "ypRed")
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
-        button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        button.centerYAnchor.constraint(equalTo: imageViewUserPic.centerYAnchor).isActive = true
+        
+        // Apply constraints
+        NSLayoutConstraint.activate([
+            imageViewUserPic.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            imageViewUserPic.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            imageViewUserPic.widthAnchor.constraint(equalToConstant: 70),
+            imageViewUserPic.heightAnchor.constraint(equalToConstant: 70),
+
+            labelFullName.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
+            labelFullName.topAnchor.constraint(equalTo: imageViewUserPic.bottomAnchor, constant: 8),
+            
+            labelUserName.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
+            labelUserName.topAnchor.constraint(equalTo: labelFullName.bottomAnchor, constant: 8),
+
+            labelGreetings.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
+            labelGreetings.topAnchor.constraint(equalTo: labelUserName.bottomAnchor, constant: 8),
+
+            button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26),
+            button.centerYAnchor.constraint(equalTo: imageViewUserPic.centerYAnchor),
+            button.widthAnchor.constraint(equalToConstant: 20),
+            button.heightAnchor.constraint(equalToConstant: 20)
+        ]);
+        
+        
     }
     
     // Logout button handler
