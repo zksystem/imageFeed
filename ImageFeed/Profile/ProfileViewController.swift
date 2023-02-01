@@ -57,15 +57,15 @@ final class ProfileViewController: UIViewController {
         self.labelGreetings = labelGreetings
         
         // Add logout button
-        let button = UIButton.systemButton(
+        let buttonLogout = UIButton.systemButton(
             with: UIImage(systemName: "ipad.and.arrow.forward")!,
             target: self,
             action: #selector(Self.didTapButton)
         )
         
-        button.tintColor = UIColor(named: "ypRed")
-        button.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(button)
+        buttonLogout.tintColor = UIColor(named: "ypRed")
+        buttonLogout.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonLogout)
         
         // Apply constraints
         NSLayoutConstraint.activate([
@@ -83,13 +83,11 @@ final class ProfileViewController: UIViewController {
             labelGreetings.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
             labelGreetings.topAnchor.constraint(equalTo: labelUserName.bottomAnchor, constant: 8),
 
-            button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26),
-            button.centerYAnchor.constraint(equalTo: imageViewUserPic.centerYAnchor),
-            button.widthAnchor.constraint(equalToConstant: 20),
-            button.heightAnchor.constraint(equalToConstant: 20)
+            buttonLogout.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26),
+            buttonLogout.centerYAnchor.constraint(equalTo: imageViewUserPic.centerYAnchor),
+            buttonLogout.widthAnchor.constraint(equalToConstant: 20),
+            buttonLogout.heightAnchor.constraint(equalToConstant: 20)
         ]);
-        
-        
     }
     
     // Logout button handler
@@ -97,7 +95,5 @@ final class ProfileViewController: UIViewController {
     @objc
     private func didTapButton() {
     }
-    
-    
     
 }
