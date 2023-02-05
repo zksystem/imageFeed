@@ -13,8 +13,7 @@ final class ProfileViewController: UIViewController {
     private var labelUserName: UILabel?
     private var labelGreetings: UILabel?
     private var imageViewUserPic: UIImageView?
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setProfilePhoto()
@@ -32,7 +31,7 @@ final class ProfileViewController: UIViewController {
         // Add full name
         let labelFullName = UILabel()
         labelFullName.text = "Екатерина Новикова"
-        labelFullName.font = UIFont.systemFont(ofSize: 23.0)
+        labelFullName.font = UIFont.boldSystemFont(ofSize: 23.0)
         labelFullName.textColor = UIColor(named: "ypWhite")
         labelFullName.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelFullName)
@@ -70,7 +69,7 @@ final class ProfileViewController: UIViewController {
         // Apply constraints
         NSLayoutConstraint.activate([
             imageViewUserPic.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            imageViewUserPic.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            imageViewUserPic.topAnchor.constraint(equalTo: view.topAnchor, constant: 76),
             imageViewUserPic.widthAnchor.constraint(equalToConstant: 70),
             imageViewUserPic.heightAnchor.constraint(equalToConstant: 70),
 
@@ -86,7 +85,7 @@ final class ProfileViewController: UIViewController {
             buttonLogout.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26),
             buttonLogout.centerYAnchor.constraint(equalTo: imageViewUserPic.centerYAnchor),
             buttonLogout.widthAnchor.constraint(equalToConstant: 20),
-            buttonLogout.heightAnchor.constraint(equalToConstant: 20)
+            buttonLogout.heightAnchor.constraint(equalToConstant: 22)
         ]);
     }
     
