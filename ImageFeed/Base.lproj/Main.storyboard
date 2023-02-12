@@ -156,19 +156,27 @@
                                     <action selector="didTapBackButton:" destination="jno-AG-nQ7" eventType="touchUpInside" id="nK7-AU-N4c"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AfL-Rm-cjG">
+                                <rect key="frame" x="0.0" y="102" width="393" height="4"/>
+                                <color key="tintColor" name="ypBlack"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="11O-z2-kvp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="iTy-BA-Ubj" secondAttribute="bottom" id="2bp-AW-SdA"/>
+                            <constraint firstItem="AfL-Rm-cjG" firstAttribute="trailing" secondItem="11O-z2-kvp" secondAttribute="trailing" id="BAC-rd-0qW"/>
                             <constraint firstItem="iTy-BA-Ubj" firstAttribute="trailing" secondItem="11O-z2-kvp" secondAttribute="trailing" id="OLi-HA-cl6"/>
                             <constraint firstItem="iTy-BA-Ubj" firstAttribute="leading" secondItem="11O-z2-kvp" secondAttribute="leading" id="R3L-qA-VaB"/>
                             <constraint firstItem="YAw-JO-k2s" firstAttribute="top" secondItem="11O-z2-kvp" secondAttribute="top" constant="13" id="T1q-YJ-wcX"/>
                             <constraint firstItem="iTy-BA-Ubj" firstAttribute="top" secondItem="bXe-Ju-vIi" secondAttribute="top" id="cNn-Fs-Ww0"/>
+                            <constraint firstItem="AfL-Rm-cjG" firstAttribute="leading" secondItem="11O-z2-kvp" secondAttribute="leading" id="dgh-2b-sSc"/>
+                            <constraint firstItem="AfL-Rm-cjG" firstAttribute="top" secondItem="YAw-JO-k2s" secondAttribute="bottom" constant="8" symbolic="YES" id="jUA-g6-Cok"/>
                             <constraint firstItem="YAw-JO-k2s" firstAttribute="leading" secondItem="11O-z2-kvp" secondAttribute="leading" constant="16" id="yZL-jq-gpl"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressView" destination="AfL-Rm-cjG" id="y6E-1w-6KH"/>
                         <outlet property="webView" destination="iTy-BA-Ubj" id="fso-MF-IW9"/>
                     </connections>
                 </viewController>
