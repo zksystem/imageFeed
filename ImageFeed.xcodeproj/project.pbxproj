@@ -14,6 +14,7 @@
 		653E3C8229539000007EC9CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653E3C8029539000007EC9CA /* LaunchScreen.storyboard */; };
 		65599826298FF52300C4FCA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65599825298FF52300C4FCA8 /* Constants.swift */; };
 		65599828298FF6A000C4FCA8 /* ImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65599827298FF6A000C4FCA8 /* ImageListViewController.swift */; };
+		655EAC6B29B4BFF6002D0A01 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655EAC6A29B4BFF6002D0A01 /* SplashViewController.swift */; };
 		658C05C8298643F700AB3CB5 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658C05C7298643F700AB3CB5 /* SingleImageViewController.swift */; };
 		65A2B01F2973F52E001042A9 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2B01E2973F52E001042A9 /* ImagesListCell.swift */; };
 		65A2B023297D2B21001042A9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2B022297D2B21001042A9 /* ProfileViewController.swift */; };
@@ -34,6 +35,7 @@
 		653E3C8329539000007EC9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65599825298FF52300C4FCA8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		65599827298FF6A000C4FCA8 /* ImageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewController.swift; sourceTree = "<group>"; };
+		655EAC6A29B4BFF6002D0A01 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		658C05C7298643F700AB3CB5 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		65A2B01E2973F52E001042A9 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		65A2B022297D2B21001042A9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		653E3C7429538FFF007EC9CA /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				655EAC6929B4BFB1002D0A01 /* SplashView */,
 				65C1C381299AC16A001BCB0F /* ServiceAccessLayer */,
 				65C1C37C2998E98F001BCB0F /* Auth */,
 				658C05C6298643CD00AB3CB5 /* SingleImage */,
@@ -88,6 +91,14 @@
 				653E3C8329539000007EC9CA /* Info.plist */,
 			);
 			path = ImageFeed;
+			sourceTree = "<group>";
+		};
+		655EAC6929B4BFB1002D0A01 /* SplashView */ = {
+			isa = PBXGroup;
+			children = (
+				655EAC6A29B4BFF6002D0A01 /* SplashViewController.swift */,
+			);
+			path = SplashView;
 			sourceTree = "<group>";
 		};
 		658C05C6298643CD00AB3CB5 /* SingleImage */ = {
@@ -219,6 +230,7 @@
 				65599826298FF52300C4FCA8 /* Constants.swift in Sources */,
 				65C1C37B2998E972001BCB0F /* AuthViewController.swift in Sources */,
 				658C05C8298643F700AB3CB5 /* SingleImageViewController.swift in Sources */,
+				655EAC6B29B4BFF6002D0A01 /* SplashViewController.swift in Sources */,
 				65599828298FF6A000C4FCA8 /* ImageListViewController.swift in Sources */,
 				65C1C37E299904DE001BCB0F /* WebViewViewController.swift in Sources */,
 				65C1C384299AC1A3001BCB0F /* Oauth2TokenStorage.swift in Sources */,
@@ -300,7 +312,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -354,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -389,9 +401,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferradesign.ImageFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -420,9 +435,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ferradesign.ImageFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
