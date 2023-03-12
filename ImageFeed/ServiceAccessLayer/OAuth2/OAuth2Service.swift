@@ -7,8 +7,6 @@
 
 import Foundation
 
-fileprivate let UnsplashOAuth2TokenURLString = "https://unsplash.com/oauth/token"
-
 final class OAuth2Service {
     
     private enum NetworkError: Error {
@@ -16,7 +14,7 @@ final class OAuth2Service {
     }
     
     func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
-        var urlComponents = URLComponents(string: UnsplashOAuth2TokenURLString)
+        var urlComponents = URLComponents(string: unsplashOAuth2TokenURLString)
         urlComponents?.queryItems = [
             URLQueryItem(name: "client_id", value: accessKey),
             URLQueryItem(name: "client_secret", value: secretKey),

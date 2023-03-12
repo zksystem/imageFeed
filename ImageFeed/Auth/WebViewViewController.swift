@@ -13,18 +13,16 @@ protocol WebViewViewControllerDelegate: AnyObject {
     func webViewViewControllerDidCancel(_ vc: WebViewViewController)
 }
 
-fileprivate let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-fileprivate let UnsplashAuthorizeOAuth2String = "/oauth/authorize/native"
 
 final class WebViewViewController: UIViewController {
     weak var delegate: WebViewViewControllerDelegate?
 
     // MARK: Outlets, IBActions
     
-    @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet private weak var webView: WKWebView!
+    @IBOutlet private weak var progressView: UIProgressView!
    
-    @IBAction func didTapBackButton(_ sender: Any?) {
+    @IBAction private func didTapBackButton(_ sender: Any?) {
         delegate?.webViewViewControllerDidCancel(self)
     }
     
@@ -34,7 +32,7 @@ final class WebViewViewController: UIViewController {
         super.viewDidLoad()
         webView.navigationDelegate = self
         
-        var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
+        var urlComponents = URLComponents(string: unsplashAuthorizeURLString)!
         
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: accessKey),
@@ -105,7 +103,7 @@ extension WebViewViewController: WKNavigationDelegate {
     private func code(from navigationAction: WKNavigationAction) -> String? {
         if let url = navigationAction.request.url,
            let urlComponents = URLComponents(string: url.absoluteString),
-           urlComponents.path == UnsplashAuthorizeOAuth2String,
+           urlComponents.path == unsplashAuthorizeOAuth2String,
            let items = urlComponents.queryItems,
            let codeItem = items.first(where: { $0.name == "code" }) {
             return codeItem.value
