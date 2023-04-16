@@ -15,3 +15,4 @@ let defaultBaseURL = URL(string: "https://api.unsplash.com")!
 let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
 let unsplashAuthorizeOAuth2String = "/oauth/authorize/native"
 let unsplashOAuth2TokenURLString = "https://unsplash.com/oauth/token"
+let unsplashProfileUrlString = "/me"
