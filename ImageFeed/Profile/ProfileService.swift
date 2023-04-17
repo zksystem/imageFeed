@@ -66,8 +66,7 @@ final class ProfileService {
         self.task = task
         task.resume()
     }
-    
-    
+       
     
     private func makeRequest(token: String) -> URLRequest {
         var urlComponents = URLComponents()

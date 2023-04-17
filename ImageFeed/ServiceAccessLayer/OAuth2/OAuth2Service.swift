@@ -9,30 +9,28 @@ import Foundation
 
 final class OAuth2Service {
     
-    enum NetworkError: Error {
-        case httpStatusCode(Int)
-        case urlRequestError(Error)
-        case urlSessionError
-    }
+//    enum NetworkError: Error {
+//        case httpStatusCode(Int)
+//        case urlRequestError(Error)
+//        case urlSessionError
+//    }
     
     static let shared = OAuth2Service()
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private var lastCode: String?
-    
-    
+        
     public func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         
         if lastCode == code {
             return
         }
+        
         task?.cancel()
         lastCode = code
         
         let request = makeRequest(code: code)
-        
-        
         let task = urlSession.requestTask(for: request) { [weak self] (result: Result<OAuth2TokenResponseBody, Error>) in
             guard let self = self else {
                 return

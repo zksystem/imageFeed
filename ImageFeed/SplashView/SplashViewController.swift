@@ -9,7 +9,7 @@ import UIKit
 import ProgressHUD
 
 final class SplashViewController: UIViewController {
-    
+
     static let shared = OAuth2Service()
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     
@@ -64,7 +64,6 @@ extension SplashViewController {
 
 extension SplashViewController: AuthViewControllerDelegate {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
-        UIBlockingProgressHUD.show()
         dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             UIBlockingProgressHUD.show()
@@ -75,11 +74,13 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     private func fetchOAuth2Token(_ code: String) {
         oAuth2Service.fetchOAuthToken(code) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
             
             switch result {
             case .success(let token):
-                self.oAuth2TokenStorage.token = token
+                //self.oAuth2TokenStorage.token = token
                 self.fetchProfile(token: token)
             case .failure:
                 UIBlockingProgressHUD.dismiss()
@@ -92,14 +93,17 @@ extension SplashViewController: AuthViewControllerDelegate {
    
     private func fetchProfile(token: String) {
         profileService.fetchProfile(token) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
             UIBlockingProgressHUD.dismiss()
             switch result {
             case .success:
+                UIBlockingProgressHUD.dismiss()
                 self.switchToTabBarController()
             case .failure:
                 UIBlockingProgressHUD.dismiss()
-                // TODO [Sprint 11] Показать ошибку
+                _ = UIAlertController(title: "Error", message: "Can't fetch profile :(", preferredStyle: UIAlertController.Style.alert)
                 break
             }
         }
