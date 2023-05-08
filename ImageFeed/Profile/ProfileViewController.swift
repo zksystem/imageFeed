@@ -6,63 +6,126 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
-    private var labelFullName: UILabel?
-    private var labelUserName: UILabel?
-    private var labelGreetings: UILabel?
-    private var imageViewUserPic: UIImageView?
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setProfilePhoto()
-    }
+    private let profileService = ProfileService.shared
     
-    private func setProfilePhoto() {
-        // Add userpic
-        let profileImage = UIImage(named: "userpic")
-        let imageViewUserPic = UIImageView(image: profileImage)
-        imageViewUserPic.tintColor = .gray
-        imageViewUserPic.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(imageViewUserPic)
-        self.imageViewUserPic = imageViewUserPic
-        
-        // Add full name
+    private var profileImageServiceObserver: NSObjectProtocol?
+    private let profileImageService = ProfileImageService.shared
+    private let profileImageServiceNotification = ProfileImageService.didChangeNotification
+    
+    private var labelFullName: UILabel = {
         let labelFullName = UILabel()
         labelFullName.text = "Екатерина Новикова"
         labelFullName.font = UIFont.boldSystemFont(ofSize: 23.0)
         labelFullName.textColor = UIColor(named: "ypWhite")
-        labelFullName.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(labelFullName)
-        self.labelFullName = labelFullName
-        
-        // Add username
+        return labelFullName
+    }()
+    
+    private var labelUserName: UILabel = {
         let labelUserName = UILabel()
         labelUserName.text = "@ekaterina_nov"
         labelUserName.font = UIFont.systemFont(ofSize: 13.0)
         labelUserName.textColor = UIColor(named: "ypGray")
-        labelUserName.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(labelUserName)
-        self.labelUserName = labelUserName
-        
-        // Add greetings message
+        return labelUserName
+    }()
+    
+    private var labelGreetings: UILabel = {
         let labelGreetings = UILabel()
         labelGreetings.text = "Hello, world"
         labelGreetings.font = UIFont.systemFont(ofSize: 13.0)
         labelGreetings.textColor = UIColor(named: "ypWhite")
+        return labelGreetings
+    }()
+    
+    private var imageViewUserPic: UIImageView = {
+        let profileImage = UIImage(named: "userpic")
+        let imageViewUserPic = UIImageView(image: profileImage)
+        imageViewUserPic.tintColor = .gray
+        return imageViewUserPic
+    }()
+    
+    private var buttonLogout: UIButton = {
+        let buttonImage = UIImage(systemName: "ipad.and.arrow.forward")
+        let buttonLogout = UIButton.systemButton(with: buttonImage!, target: nil, action: #selector(didTapLogoutButton))
+        buttonLogout.tintColor = UIColor(named: "ypRed")
+        return buttonLogout
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        updateAvatar()
+        view.backgroundColor = UIColor(named: "ypBlack")
+        
+        guard let profile = profileService.profile else {
+            return
+        }
+        
+        updateProfileDetails(profile: profile)
+        initProfile()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        profileImageServiceObserver = NotificationCenter.default.addObserver(
+            forName: profileImageServiceNotification,
+            object: nil,
+            queue: .main) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateAvatar()
+            }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: profileImageServiceObserver as? NSNotification.Name, object: nil)
+    }
+    
+    
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else {
+            return
+        }
+        
+        let processor = RoundCornerImageProcessor(cornerRadius: 35)
+        imageViewUserPic.kf.setImage(
+            with: url,
+            placeholder: UIImage(named: "person.crop.circle.fill"),
+            options: [.processor(processor)]
+        )
+    }
+    
+    private func updateProfileDetails(profile: Profile) {
+        labelFullName.text = profile.name
+        labelUserName.text = profile.loginName
+        labelGreetings.text = profile.bio
+    }
+    
+    private func initProfile() {
+        // Add userpic
+        imageViewUserPic.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageViewUserPic)
+        
+        // Add full name
+        labelFullName.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(labelFullName)
+        
+        // Add username
+        labelUserName.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(labelUserName)
+        
+        // Add greetings message
         labelGreetings.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelGreetings)
-        self.labelGreetings = labelGreetings
         
         // Add logout button
-        let buttonLogout = UIButton.systemButton(
-            with: UIImage(systemName: "ipad.and.arrow.forward")!,
-            target: self,
-            action: #selector(Self.didTapButton)
-        )
-        
-        buttonLogout.tintColor = UIColor(named: "ypRed")
         buttonLogout.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonLogout)
         
@@ -72,16 +135,16 @@ final class ProfileViewController: UIViewController {
             imageViewUserPic.topAnchor.constraint(equalTo: view.topAnchor, constant: 76),
             imageViewUserPic.widthAnchor.constraint(equalToConstant: 70),
             imageViewUserPic.heightAnchor.constraint(equalToConstant: 70),
-
+            
             labelFullName.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
             labelFullName.topAnchor.constraint(equalTo: imageViewUserPic.bottomAnchor, constant: 8),
             
             labelUserName.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
             labelUserName.topAnchor.constraint(equalTo: labelFullName.bottomAnchor, constant: 8),
-
+            
             labelGreetings.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
             labelGreetings.topAnchor.constraint(equalTo: labelUserName.bottomAnchor, constant: 8),
-
+            
             buttonLogout.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26),
             buttonLogout.centerYAnchor.constraint(equalTo: imageViewUserPic.centerYAnchor),
             buttonLogout.widthAnchor.constraint(equalToConstant: 20),
@@ -89,10 +152,8 @@ final class ProfileViewController: UIViewController {
         ]);
     }
     
-    // Logout button handler
-    
-    @objc
-    private func didTapButton() {
+    @objc private func didTapLogoutButton() {
+        //TODO: logout here
     }
     
 }
