@@ -9,12 +9,6 @@ import Foundation
 
 final class OAuth2Service {
     
-//    enum NetworkError: Error {
-//        case httpStatusCode(Int)
-//        case urlRequestError(Error)
-//        case urlSessionError
-//    }
-    
     static let shared = OAuth2Service()
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?

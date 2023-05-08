@@ -39,21 +39,19 @@ struct Profile {
 
 final class ProfileService {
     static let shared = ProfileService()
+    
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private(set) var profile: Profile?
 
-    func fetchProfile(_ token: String, completion: @escaping (Result<ProfileResult, Error>) -> Void) {
+        func fetchProfile(_ token: String, completion: @escaping (Result<ProfileResult, Error>) -> Void) {
         assert(Thread.isMainThread)
         task?.cancel()
         
         let request = makeRequest(token: token)
         
         let task = urlSession.requestTask(for: request) { [weak self] (result: Result<ProfileResult, Error>) in
-            guard let self = self else {
-                return
-            }
-
+            guard let self = self else { return }
             switch result {
             case .success(let profile):
                 self.profile = Profile(result: profile)

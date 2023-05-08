@@ -9,9 +9,11 @@ import UIKit
 import Kingfisher
 
 final class ProfileViewController: UIViewController {
+
+    private let profileService = ProfileService.shared
+
     
     private var profileImageServiceObserver: NSObjectProtocol?
-    private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
     private let profileImageServiceNotification = ProfileImageService.didChangeNotification
         
