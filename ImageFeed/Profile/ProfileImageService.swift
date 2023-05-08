@@ -23,7 +23,9 @@ struct ImageResult: Codable {
 }
 
 final class ProfileImageService {
+    
     static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
+    
     private var task: URLSessionTask?
     private(set) var avatarURL: String?
     static let shared = ProfileImageService()
@@ -43,6 +45,7 @@ final class ProfileImageService {
             case .success(let profileImage):
                 self.avatarURL = profileImage.profileImage.medium
                 completion(.success(profileImage.profileImage.medium))
+                
                 NotificationCenter.default
                     .post(name: ProfileImageService.didChangeNotification,
                           object: self,
@@ -55,16 +58,16 @@ final class ProfileImageService {
         self.task = task
         task.resume()
     }
- 
+    
     
     private func makeRequest(token: String, username: String) -> URLRequest {
         var urlComponents = URLComponents()
         urlComponents.path = unsplashUsersUrlString + "/\(username)"
-
+        
         guard let url = urlComponents.url(relativeTo: defaultBaseURL) else {
             fatalError("Failed to create URL")
         }
-
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

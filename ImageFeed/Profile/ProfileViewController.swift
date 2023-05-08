@@ -9,14 +9,13 @@ import UIKit
 import Kingfisher
 
 final class ProfileViewController: UIViewController {
-
+    
     private let profileService = ProfileService.shared
-
     
     private var profileImageServiceObserver: NSObjectProtocol?
     private let profileImageService = ProfileImageService.shared
     private let profileImageServiceNotification = ProfileImageService.didChangeNotification
-        
+    
     private var labelFullName: UILabel = {
         let labelFullName = UILabel()
         labelFullName.text = "Екатерина Новикова"
@@ -47,14 +46,13 @@ final class ProfileViewController: UIViewController {
         imageViewUserPic.tintColor = .gray
         return imageViewUserPic
     }()
-        
+    
     private var buttonLogout: UIButton = {
         let buttonImage = UIImage(systemName: "ipad.and.arrow.forward")
         let buttonLogout = UIButton.systemButton(with: buttonImage!, target: nil, action: #selector(didTapLogoutButton))
         buttonLogout.tintColor = UIColor(named: "ypRed")
         return buttonLogout
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +77,7 @@ final class ProfileViewController: UIViewController {
             queue: .main) { [weak self] _ in
                 guard let self = self else { return }
                 self.updateAvatar()
-        }
+            }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -95,7 +93,7 @@ final class ProfileViewController: UIViewController {
         else {
             return
         }
-            
+        
         let processor = RoundCornerImageProcessor(cornerRadius: 35)
         imageViewUserPic.kf.setImage(
             with: url,
@@ -137,16 +135,16 @@ final class ProfileViewController: UIViewController {
             imageViewUserPic.topAnchor.constraint(equalTo: view.topAnchor, constant: 76),
             imageViewUserPic.widthAnchor.constraint(equalToConstant: 70),
             imageViewUserPic.heightAnchor.constraint(equalToConstant: 70),
-
+            
             labelFullName.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
             labelFullName.topAnchor.constraint(equalTo: imageViewUserPic.bottomAnchor, constant: 8),
             
             labelUserName.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
             labelUserName.topAnchor.constraint(equalTo: labelFullName.bottomAnchor, constant: 8),
-
+            
             labelGreetings.leadingAnchor.constraint(equalTo: imageViewUserPic.leadingAnchor),
             labelGreetings.topAnchor.constraint(equalTo: labelUserName.bottomAnchor, constant: 8),
-
+            
             buttonLogout.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26),
             buttonLogout.centerYAnchor.constraint(equalTo: imageViewUserPic.centerYAnchor),
             buttonLogout.widthAnchor.constraint(equalToConstant: 20),
