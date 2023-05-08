@@ -12,6 +12,7 @@
 		653E3C7D29538FFF007EC9CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653E3C7B29538FFF007EC9CA /* Main.storyboard */; };
 		653E3C7F29539000007EC9CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653E3C7E29539000007EC9CA /* Assets.xcassets */; };
 		653E3C8229539000007EC9CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653E3C8029539000007EC9CA /* LaunchScreen.storyboard */; };
+		654FC5212A08E84800304A1F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654FC5202A08E84800304A1F /* TabBarController.swift */; };
 		65599826298FF52300C4FCA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65599825298FF52300C4FCA8 /* Constants.swift */; };
 		65599828298FF6A000C4FCA8 /* ImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65599827298FF6A000C4FCA8 /* ImageListViewController.swift */; };
 		655EAC6B29B4BFF6002D0A01 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655EAC6A29B4BFF6002D0A01 /* SplashViewController.swift */; };
@@ -40,6 +41,7 @@
 		653E3C7E29539000007EC9CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		653E3C8129539000007EC9CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		653E3C8329539000007EC9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		654FC5202A08E84800304A1F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		65599825298FF52300C4FCA8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		65599827298FF6A000C4FCA8 /* ImageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewController.swift; sourceTree = "<group>"; };
 		655EAC6A29B4BFF6002D0A01 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		653E3C7429538FFF007EC9CA /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				654FC51F2A08E81F00304A1F /* TabBarController */,
 				655EAC7029C2553D002D0A01 /* Helpers */,
 				655EAC6929B4BFB1002D0A01 /* SplashView */,
 				65C1C381299AC16A001BCB0F /* ServiceAccessLayer */,
@@ -106,6 +109,14 @@
 				653E3C8329539000007EC9CA /* Info.plist */,
 			);
 			path = ImageFeed;
+			sourceTree = "<group>";
+		};
+		654FC51F2A08E81F00304A1F /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				654FC5202A08E84800304A1F /* TabBarController.swift */,
+			);
+			path = TabBarController;
 			sourceTree = "<group>";
 		};
 		655EAC6929B4BFB1002D0A01 /* SplashView */ = {
@@ -263,6 +274,7 @@
 				65A2B01F2973F52E001042A9 /* ImagesListCell.swift in Sources */,
 				65A2B023297D2B21001042A9 /* ProfileViewController.swift in Sources */,
 				653E3C7629538FFF007EC9CA /* AppDelegate.swift in Sources */,
+				654FC5212A08E84800304A1F /* TabBarController.swift in Sources */,
 				65599826298FF52300C4FCA8 /* Constants.swift in Sources */,
 				65C1C37B2998E972001BCB0F /* AuthViewController.swift in Sources */,
 				658C05C8298643F700AB3CB5 /* SingleImageViewController.swift in Sources */,
