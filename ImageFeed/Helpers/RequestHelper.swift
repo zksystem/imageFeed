@@ -10,6 +10,7 @@ import Foundation
 enum NetworkError: Error {
     case httpStatusCode(Int)
     case urlRequestError(Error)
+    case jsonDecodeError
     case urlSessionError
 }
 
@@ -29,7 +30,7 @@ extension URLSession {
                             let result = try JSONDecoder().decode(Model.self, from: data)
                             fillCompletion(.success(result))
                         } catch {
-                            fillCompletion(.failure(NetworkError.urlRequestError(error)))
+                            fillCompletion(.failure(NetworkError.jsonDecodeError))
                         }
                     } else {
                         fillCompletion(.failure(NetworkError.httpStatusCode(statusCode)))

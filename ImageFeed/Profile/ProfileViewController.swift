@@ -48,10 +48,14 @@ final class ProfileViewController: UIViewController {
     }()
     
     private var buttonLogout: UIButton = {
-        let buttonImage = UIImage(systemName: "ipad.and.arrow.forward")
-        let buttonLogout = UIButton.systemButton(with: buttonImage!, target: nil, action: #selector(didTapLogoutButton))
-        buttonLogout.tintColor = UIColor(named: "ypRed")
-        return buttonLogout
+        if let buttonImage = UIImage(systemName: "ipad.and.arrow.forward"){
+            let buttonLogout = UIButton.systemButton(with: buttonImage, target: nil, action: #selector(didTapLogoutButton))
+            buttonLogout.tintColor = UIColor(named: "ypRed")
+            return buttonLogout
+        } else {
+            assertionFailure("Unable to create button with image")
+            return UIButton()
+        }
     }()
     
     override func viewDidLoad() {
