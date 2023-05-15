@@ -13,7 +13,7 @@ struct Photo {
     let createdAt: Date?
     let welcomeDescription: String?
     let thumbImageURL: String
-    let largeImageURL: String
+    let fullImageURL: String
     let isLiked: Bool
 }
 
@@ -58,6 +58,8 @@ final class ImageListService {
     private let dateFormatter = ISO8601DateFormatter()
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     
+    //--- fetch photos
+    
     func fetchPhotosNextPage() {
         guard task == nil else {
             return
@@ -89,13 +91,13 @@ final class ImageListService {
                         createdAt: self.dateFormatter.date(from: photoResult.createdAt ?? ""),
                         welcomeDescription: photoResult.description,
                         thumbImageURL: photoResult.urls.thumb,
-                        largeImageURL: photoResult.urls.full,
+                        fullImageURL: photoResult.urls.full,
                         isLiked: photoResult.likedByUser)
                     self.photos.append(photo)
                 }
                 
                 NotificationCenter.default.post(name: ImageListService.didChangeNotification, object: self,
-                          userInfo: ["photos": self.photos])
+                                                userInfo: ["photos": self.photos])
                 
             case .failure(let error):
                 print(error)
@@ -113,7 +115,44 @@ final class ImageListService {
         }
     }
     
+    //--- change like state
     
+    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
+        assert(Thread.isMainThread)
+        task?.cancel()
+        
+        guard var request = makeRequest(path: "/photos/\(photoId)/like") else { return assertionFailure("Error like request")}
+        
+        if isLike {
+            request.httpMethod = "POST"
+        } else {
+            request.httpMethod = "DELETE"
+        }
+        
+        _ = urlSession.requestTask(for: request) { [weak self] (result: Result<LikeResult, Error>) in
+            guard let self else { return }
+            switch result {
+            case .success:
+                if let index = self.photos.firstIndex(where: { $0.id == photoId }) {
+                    let photo = self.photos[index]
+                    let newPhoto = Photo(
+                        id: photo.id,
+                        size: photo.size,
+                        createdAt: photo.createdAt,
+                        welcomeDescription: photo.welcomeDescription,
+                        thumbImageURL: photo.thumbImageURL,
+                        fullImageURL: photo.fullImageURL,
+                        isLiked: !photo.isLiked)
+                    self.photos[index] = newPhoto
+                    completion(.success(()))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }    
+    
+    //--- request
     
     private func makeRequest(path: String) -> URLRequest? {
         guard let baseURL = URL(string: path, relativeTo: defaultBaseURL) else {
