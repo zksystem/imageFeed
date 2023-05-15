@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import SwiftKeychainWrapper
 
 protocol WebViewViewControllerDelegate: AnyObject {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
@@ -17,12 +18,12 @@ protocol WebViewViewControllerDelegate: AnyObject {
 final class WebViewViewController: UIViewController {
     weak var delegate: WebViewViewControllerDelegate?
     private var estimatedProgressObservation: NSKeyValueObservation?
-
+    
     // MARK: Outlets, IBActions
     
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private weak var progressView: UIProgressView!
-   
+    
     @IBAction private func didTapBackButton(_ sender: Any?) {
         delegate?.webViewViewControllerDidCancel(self)
     }
@@ -34,12 +35,12 @@ final class WebViewViewController: UIViewController {
         
         estimatedProgressObservation = webView.observe(
             \.estimatedProgress,
-            options: [],
-            changeHandler: { [weak self] _, _ in
-                guard let self = self else { return }
-                self.updateProgress()
-            })
-                
+             options: [],
+             changeHandler: { [weak self] _, _ in
+                 guard let self = self else { return }
+                 self.updateProgress()
+             })
+        
         webView.navigationDelegate = self
         
         var urlComponents = URLComponents(string: unsplashAuthorizeURLString)!
@@ -55,7 +56,7 @@ final class WebViewViewController: UIViewController {
         let request = URLRequest(url: url)
         webView.load(request)
     }
-
+    
     // MARK: View will appear
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +67,7 @@ final class WebViewViewController: UIViewController {
                             context: nil)
         updateProgress()
     }
-
+    
     // MARK: View will disappear
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,6 +95,23 @@ final class WebViewViewController: UIViewController {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
+    
+    // MARK: Cleanup cookies
+    
+    static func cleanCookies() {
+        KeychainWrapper.standard.removeObject(forKey: OAuth2TokenStorage.Keys.bearerToken.rawValue)
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(
+                    ofTypes: record.dataTypes,
+                    for: [record],
+                    completionHandler: {})
+            }
+        }
+    }
+    
+    
 }
 
 // MARK: Navigation delegate. Handle auth answer
