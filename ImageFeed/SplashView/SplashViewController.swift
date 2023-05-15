@@ -105,7 +105,7 @@ extension SplashViewController: AuthViewControllerDelegate {
                 self.fetchProfile(token: token)
             case .failure:
                 UIBlockingProgressHUD.dismiss()
-                _ = UIAlertController(title: "Error", message: "Can't login :(", preferredStyle: UIAlertController.Style.alert)
+                showErrorAlert(message: "Не удалось войти в систему")
                 break
             }
         }
@@ -125,10 +125,21 @@ extension SplashViewController: AuthViewControllerDelegate {
                 self.switchToTabBarController()
             case .failure:
                 UIBlockingProgressHUD.dismiss()
-                _ = UIAlertController(title: "Error", message: "Can't fetch profile :(", preferredStyle: UIAlertController.Style.alert)
+                showErrorAlert(message: "Не удалось загрузить профиль")
                 break
             }
         }
-    }    
+    }
+    
+    
+    private func showErrorAlert(message: String) {
+        let alertController = UIAlertController(title: "Что-то пошло не так(", message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion:nil)
+    }   
     
 }
+
+
+
