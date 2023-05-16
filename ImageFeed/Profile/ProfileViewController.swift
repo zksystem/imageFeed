@@ -44,6 +44,7 @@ final class ProfileViewController: UIViewController {
         let profileImage = UIImage(named: "userpic")
         let imageViewUserPic = UIImageView(image: profileImage)
         imageViewUserPic.tintColor = .gray
+        imageViewUserPic.backgroundColor = .clear
         return imageViewUserPic
     }()
     

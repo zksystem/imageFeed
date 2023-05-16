@@ -18,8 +18,6 @@ final class ImagesListViewController: UIViewController {
     private var imageListService = ImageListService.shared
     private var imageListServiceObserver: NSObjectProtocol?
     
-    //private let photosName: [String] = Array(0..<20).map{ "\($0)" }
-    
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
@@ -139,17 +137,20 @@ extension ImagesListViewController: ImagesListCellDelegate {
         
         UIBlockingProgressHUD.show()
         imageListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
+            
             switch result {
             case .success:
                 self.photos = self.imageListService.photos
                 cell.setIsLiked(isLiked: !photo.isLiked)
-                UIBlockingProgressHUD.dismiss()
             case .failure(let error):
-                UIBlockingProgressHUD.dismiss()
                 print("imageListCellDidTapLike Error: \(error)")
                 self.showErrorAlert()
             }
+            
+            UIBlockingProgressHUD.dismiss()
         }
     }
     
