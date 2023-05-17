@@ -47,9 +47,9 @@ struct LikeResult: Decodable {
 
 //
 
-final class ImageListService {
+final class ImagesListService {
     
-    static let shared = ImageListService()
+    static let shared = ImagesListService()
     
     private (set) var photos: [Photo] = []
     private var lastLoadedPage: Int?
@@ -96,7 +96,7 @@ final class ImageListService {
                     self.photos.append(photo)
                 }
                 
-                NotificationCenter.default.post(name: ImageListService.didChangeNotification, object: self,
+                NotificationCenter.default.post(name: ImagesListService.didChangeNotification, object: self,
                                                 userInfo: ["photos": self.photos])
                 
             case .failure(let error):
