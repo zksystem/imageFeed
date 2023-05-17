@@ -24,20 +24,6 @@ final class WebViewPresenter: WebViewPresenterProtocol {
     }
         
     func viewDidLoad() {
-//        var urlComponents = URLComponents()
-//        urlComponents.scheme = "https"
-//        urlComponents.host = UnsplashHost
-//        urlComponents.path = UnsplashAuthorizePath
-//        urlComponents.queryItems = [
-//            URLQueryItem(name: "client_id", value: AccessKey),
-//            URLQueryItem(name: "redirect_uri", value: RedirectURI),
-//            URLQueryItem(name: "response_type", value: "code"),
-//            URLQueryItem(name: "scope", value: AccessScope)
-//        ]
-//
-//        let url = urlComponents.url!
-//        let request = URLRequest(url: url)
-
         let request = authHelper.authRequest()
         view?.load(request: request)
 
@@ -58,16 +44,6 @@ final class WebViewPresenter: WebViewPresenterProtocol {
     
     func code(from url: URL) -> String? {
         authHelper.code(from: url)
-        //        if let urlComponents = URLComponents(string: url.absoluteString),
-//           urlComponents.path == unsplashAuthorizeOAuth2String,
-//           let items = urlComponents.queryItems,
-//           let codeItem = items.first(where: { $0.name == "code" })
-//        {
-//            return codeItem.value
-//        } else {
-//            return nil
-//        }
     }
-    
 }
 
