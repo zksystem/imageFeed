@@ -64,7 +64,7 @@ final class ProfileImageService {
         var urlComponents = URLComponents()
         urlComponents.path = unsplashUsersUrlString + "/\(username)"
         
-        guard let url = urlComponents.url(relativeTo: defaultBaseURL) else {
+        guard let url = urlComponents.url(relativeTo: DefaultBaseURL) else {
             assertionFailure("Failed to create URL")
             return URLRequest(url: URL(string: "")!)
         }

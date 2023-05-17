@@ -72,7 +72,7 @@ final class ProfileService {
         var urlComponents = URLComponents()
         urlComponents.path = unsplashProfileUrlString
         
-        guard let url = urlComponents.url(relativeTo: defaultBaseURL) else {
+        guard let url = urlComponents.url(relativeTo: DefaultBaseURL) else {
             fatalError("Failed to create URL")
         }
 
