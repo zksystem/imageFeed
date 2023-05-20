@@ -49,6 +49,7 @@ final class WebViewViewController: UIViewController & WebViewViewControllerProto
         super.viewDidLoad()
         webView.navigationDelegate = self
         presenter?.viewDidLoad()
+        webView.accessibilityIdentifier = "UnsplashWebView"
     }
     
     // MARK: View will appear
