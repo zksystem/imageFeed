@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct ProfileResult: Codable {
     let username: String
     let firstName: String
@@ -22,7 +21,7 @@ struct ProfileResult: Codable {
     }
 }
 
-struct Profile {
+public struct Profile {
     let username: String
     let name: String
     let loginName: String
@@ -72,7 +71,7 @@ final class ProfileService {
         var urlComponents = URLComponents()
         urlComponents.path = unsplashProfileUrlString
         
-        guard let url = urlComponents.url(relativeTo: defaultBaseURL) else {
+        guard let url = urlComponents.url(relativeTo: DefaultBaseURL) else {
             fatalError("Failed to create URL")
         }
 

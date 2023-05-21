@@ -8,10 +8,17 @@
 import UIKit
 import Kingfisher
 
-final class ProfileViewController: UIViewController {
+public protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfilePresenterProtocol? { get set }
+    func updateProfileDetails(profile: Profile)
+    func updateAvatar()
+}
+
+
+final class ProfileViewController: UIViewController & ProfileViewControllerProtocol {
+    var presenter: ProfilePresenterProtocol?
     
     private let profileService = ProfileService.shared
-    
     private var profileImageServiceObserver: NSObjectProtocol?
     private let profileImageService = ProfileImageService.shared
     private let profileImageServiceNotification = ProfileImageService.didChangeNotification
@@ -61,28 +68,14 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateAvatar()
         view.backgroundColor = UIColor(named: "ypBlack")
-        
-        guard let profile = profileService.profile else {
-            return
-        }
-        
-        updateProfileDetails(profile: profile)
+        updateAvatar()
         initProfile()
+        presenter?.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        profileImageServiceObserver = NotificationCenter.default.addObserver(
-            forName: profileImageServiceNotification,
-            object: nil,
-            queue: .main) { [weak self] _ in
-                guard let self = self else { return }
-                self.updateAvatar()
-            }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -91,7 +84,7 @@ final class ProfileViewController: UIViewController {
     }
     
     
-    private func updateAvatar() {
+    func updateAvatar() {
         guard
             let profileImageURL = ProfileImageService.shared.avatarURL,
             let url = URL(string: profileImageURL)
@@ -107,7 +100,7 @@ final class ProfileViewController: UIViewController {
         )
     }
     
-    private func updateProfileDetails(profile: Profile) {
+    func updateProfileDetails(profile: Profile) {
         labelFullName.text = profile.name
         labelUserName.text = profile.loginName
         labelGreetings.text = profile.bio
@@ -161,22 +154,13 @@ final class ProfileViewController: UIViewController {
         let alert = UIAlertController(title: "Выход", message: "Вы желаете выйти?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
-            self.logOut()
+            presenter?.logOut()
         }))
         
         alert.addAction(UIAlertAction(title: "Нет", style: .default))
         self.present(alert, animated: true)
     }
     
-    private func logOut() {
-        WebViewViewController.cleanCookies()
-        guard let window = UIApplication.shared.windows.first else {
-            assertionFailure("Error")
-            return
-        }
-        
-        let splashViewController = SplashViewController()
-        window.rootViewController = splashViewController
-    }
+    
     
 }
